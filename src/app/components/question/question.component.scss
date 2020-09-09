@@ -1,0 +1,29 @@
+
+.option-box {
+    border-radius: .25rem;
+    height: 8.75rem;
+    margin: 1.5rem .625rem 0;
+    cursor: pointer;
+    box-shadow: 0 0 .25rem 0 rgba(0, 0, 0, 0.24);
+    transition: all .12s cubic-bezier(.47,0,.745,.715);
+
+    :hover {
+        box-shadow: 0 0.25rem 1rem 0 rgba(0,0,0,.16);
+    }
+}
+
+.option-box-body {
+    background-color: #ffecc2;
+    background-image: url(https://assets.quizlet.com/a/i/homepage/topics/other.67db08f4bd869cc.png);
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -ms-flex-pack: start;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+
+    :hover {
+        box-shadow: none;
+    }
+}

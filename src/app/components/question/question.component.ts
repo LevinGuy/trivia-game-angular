@@ -14,6 +14,11 @@ export class QuestionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.question);
+  }
+
+  selectAnswer(optionIndex: number) {
+    console.log('Option Selected: ', this.question.options[optionIndex]);
   }
 
 }
