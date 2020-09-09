@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Question } from 'src/app/models';
 
 @Component({
@@ -23,6 +23,8 @@ export class QuestionComponent implements OnInit {
 
   private _question: Question;
 
+  @Output() questionAnswered: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -30,7 +32,7 @@ export class QuestionComponent implements OnInit {
   }
 
   selectAnswer(optionIndex: number) {
-    console.log('Option Selected: ', this.question.options[optionIndex]);
+    this.questionAnswered.emit(optionIndex);
   }
 
 }

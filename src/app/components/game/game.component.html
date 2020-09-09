@@ -7,6 +7,6 @@
 </div>
 
 
-<app-question [question]="mockGame.questions[currentQuestion]"></app-question>
+<app-question [question]="mockGame.questions[currentQuestion]" (questionAnswered)="onAnswerSelected($event)"></app-question>
 
 

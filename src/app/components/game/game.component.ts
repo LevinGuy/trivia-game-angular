@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-game',
@@ -400,7 +400,14 @@ export class GameComponent implements OnInit, OnDestroy {
     } else {
       this._timer = null;
       // move to the summary ?
+      console.log(this.mockGame);
     }
+  }
+
+  onAnswerSelected(optionIndex) {
+    // first we deselect all the options
+    this.mockGame.questions[this.currentQuestion].options.map(opt => opt.selected = false);
+    this.mockGame.questions[this.currentQuestion].options[optionIndex].selected = true;
   }
 
   ngOnDestroy(): void {
