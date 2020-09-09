@@ -4,44 +4,40 @@ import { take, map, finalize } from 'rxjs/operators';
 import { Game } from 'src/app/models';
 import { Observable } from 'rxjs';
 import { GameService } from 'src/app/services/game.service';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { SetQuestions } from 'src/app/reducers/questions/questions.reducer.actions';
+import { getUserLives } from 'src/app/reducers/user/user.selectors';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit, OnDestroy {
+export class GameComponent implements OnInit {
 
   game$: Observable<Game>;
-
   progress: number;
-  maxWrongAnswers: number;
+  lives: number;
 
-  private _timer: any;
 
-  constructor(private _dataService: DataService, public gameService: GameService) { }
-
+  constructor(
+    private _dataService: DataService,
+    private _router: Router,
+    private store: Store<any>,
+    public gameService: GameService) { }
 
   ngOnInit() {
-
     this.game$ = this._dataService.get().pipe(map((response) => {
       const data = new Game(response);
-      this.maxWrongAnswers = 3;
       this.progress = Math.round(100 / data.questions.length);
-      // this._timer = setInterval(this.nextQuestion.bind(this), 5000);
-
-      this.gameService.questions = data.questions;
+      this.store.dispatch(new SetQuestions(data.questions));
       return data;
     }));
   }
 
   nextQuestion() {
-    if (this.gameService.questions.length > this.gameService.currentQuestion + 1) {
-      this.gameService.nextQuestion();
-      this.progress = Math.round(100 / (this.gameService.questions.length / (this.gameService.currentQuestion + 1)));
-    } else {
-      console.log(this.game$);
-    }
+    this.gameService.nextQuestion();
   }
 
   onAnswerSelected(optionIndex) {
@@ -49,7 +45,4 @@ export class GameComponent implements OnInit, OnDestroy {
     this.nextQuestion();
   }
 
-  ngOnDestroy(): void {
-    // this._timer = null;
-  }
 }

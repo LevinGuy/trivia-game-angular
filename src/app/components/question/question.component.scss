@@ -14,7 +14,7 @@
 
 .option-box-body {
     background-color: #ffecc2;
-    background-image: url(https://assets.quizlet.com/a/i/homepage/topics/other.67db08f4bd869cc.png);
+    background-image: url('/assets/images/option.png');
     background-position: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -26,6 +26,20 @@
     :hover {
         box-shadow: none;
     }
+}
+
+.selected {
+    border: 2px solid #555555;
+}
+
+.bg-red {
+    background-color: red;
+    background-image: url('/assets/images/option-wrong.png');
+}
+
+.bg-green {
+    background-color: #8ADE5F;
+    background-image: url('/assets/images/option-correct.png');
 }
 
 .button-item {
@@ -57,6 +71,7 @@
 }
 
 .timer-item {
+    min-width: 100px;
     font-weight: 600;
     font-size: 22px;
     letter-spacing: 0;

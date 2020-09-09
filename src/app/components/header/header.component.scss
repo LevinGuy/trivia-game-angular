@@ -14,3 +14,16 @@
     font-size: 32px;
     letter-spacing: 0;
 }
+
+.score {
+    min-width: 100px;
+    background-color: black;
+    color: #ffecc2;
+    display: inline-block;
+    height: 35px;
+    border-style: inset;
+    border-width: 2px;
+    text-align: center;
+    line-height: 35px;
+    font-weight: 700;
+}

@@ -9,7 +9,8 @@
     </div> -->
 
 
-    <app-question [question]="gameService.questions[gameService.currentQuestion]" (nextQuestion)="nextQuestion()" (questionAnswered)="onAnswerSelected($event)"></app-question>
+    <app-question [question]="gameService.getCurrentQuestion() | async"
+        (nextQuestion)="nextQuestion()" (questionAnswered)="onAnswerSelected($event)"></app-question>
 
 </ng-container>
 

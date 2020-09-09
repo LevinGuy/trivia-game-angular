@@ -32,7 +32,9 @@ export class Question {
             opts.push(new Option( { option: o, isAnswer: false }));
         });
 
-        this.options = this.shuffle(opts);
+        // this.options = this.shuffle(opts);
+        // for testing
+        this.options = opts;
     }
 
     shuffle(array) {
