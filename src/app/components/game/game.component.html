@@ -1,5 +1,12 @@
-<p>game works!</p>
+<div class="mt-4 container">
+    <div class="progress ml-2 mr-2" style="height: 40px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [ngStyle]="{'width.%': progress}" [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100">
+            <div class="badge badge-warning text-wrap mr-4 ml-4">Question {{currentQuestion + 1}} of {{mockGame.questions.length}}.</div>
+        </div>
+    </div>
+</div>
 
 
+<app-question [question]="mockGame.questions[currentQuestion]"></app-question>
 
-<app-question [question]="mockGame.questions[0]"></app-question>
+

@@ -8,13 +8,25 @@ import { Question } from 'src/app/models';
 })
 export class QuestionComponent implements OnInit {
 
+  public showLoader = true;
+
   @Input()
-  public question: Question;
+  public set question(question: Question) {
+    this.showLoader = true;
+    this._question = question;
+    setTimeout(() => this.showLoader = false, 500); // this is for showing the user that question changed
+  }
+
+  public get question() {
+    return this._question;
+  }
+
+  private _question: Question;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.question);
+    console.log(this._question);
   }
 
   selectAnswer(optionIndex: number) {

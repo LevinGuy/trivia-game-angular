@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit {
+export class GameComponent implements OnInit, OnDestroy {
 
   mockGame: any = {
     id: 1,
@@ -375,9 +375,35 @@ export class GameComponent implements OnInit {
     ]
 };
 
+  progress: number;
+  currentQuestion: number;
+
+  private _timer: any;
+
   constructor() { }
 
+
   ngOnInit() {
+
+    // we should get the config
+
+    this.currentQuestion = 0;
+    this.progress = Math.round(100 / (this.mockGame.questions.length / (this.currentQuestion + 1)));
+
+    this._timer = setInterval(this.nextQuestion.bind(this), 5000);
   }
 
+  nextQuestion() {
+    if (this.mockGame.questions.length > this.currentQuestion + 1) {
+      this.currentQuestion++;
+      this.progress = Math.round(100 / (this.mockGame.questions.length / (this.currentQuestion + 1)));
+    } else {
+      this._timer = null;
+      // move to the summary ?
+    }
+  }
+
+  ngOnDestroy(): void {
+    this._timer = null;
+  }
 }
