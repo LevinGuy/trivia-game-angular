@@ -1,12 +1,16 @@
-<div class="mt-4 container">
-    <div class="progress ml-2 mr-2" style="height: 40px;">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [ngStyle]="{'width.%': progress}" [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100">
-            <div class="badge badge-warning text-wrap mr-4 ml-4">Question {{currentQuestion + 1}} of {{mockGame.questions.length}}.</div>
+<ng-container *ngIf="game$ | async as game">
+    
+    <!-- <div class="mt-4 container">
+        <div class="progress ml-2 mr-2" style="height: 40px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [ngStyle]="{'width.%': progress}" [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100">
+                <div class="badge badge-warning text-wrap mr-4 ml-4">Question {{gameService.currentQuestion + 1}} of {{gameService.questions.length}}.</div>
+            </div>
         </div>
-    </div>
-</div>
+    </div> -->
 
 
-<app-question [question]="mockGame.questions[currentQuestion]" (questionAnswered)="onAnswerSelected($event)"></app-question>
+    <app-question [question]="gameService.questions[gameService.currentQuestion]" (nextQuestion)="nextQuestion()" (questionAnswered)="onAnswerSelected($event)"></app-question>
+
+</ng-container>
 
 

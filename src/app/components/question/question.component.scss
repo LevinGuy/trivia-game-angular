@@ -27,3 +27,37 @@
         box-shadow: none;
     }
 }
+
+.button-item {
+    text-transform: uppercase;
+    min-height: 60px;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: 0;
+}
+
+.question-item::before {
+    content: 'Q: ';
+    color: #0D7BAB;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.question-item {
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 0;
+}
+
+.timer-item::before {
+    content: 'Time: ';
+    color: #0D7BAB;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.timer-item {
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 0;
+}

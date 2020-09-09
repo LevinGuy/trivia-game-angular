@@ -1,0 +1,16 @@
+.navbar {
+    min-height: 50px;
+}
+
+.sticky-top {
+    background: #6aa4ba; /* Old browsers */
+    background: linear-gradient(45deg,  #6aa4ba 0%,#3a8caa 33%,#5394ac 34%,#54a3ee 73%,#6eaeef 74%,#3f7d94 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+}
+
+.header-item {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 0;
+}

@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    margin-bottom: 120px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+        min-height: 50px;
+    } 
+
+    body {
+        margin-bottom: 70px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .navbar {
+        min-height: 80px;
+    }
+}

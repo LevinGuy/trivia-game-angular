@@ -1,0 +1,22 @@
+<!-- Image and text -->
+<nav class="navbar sticky-top navbar-light bg-light">
+    <div class="container d-flex">
+        
+            <div class="p-2 flex-fill bd-highlight">
+                <h1 class="display-4 header-item text-white">Lives: 
+                    <small>
+                        <span *ngFor='let in of gameService.lives; let i = index'>{{i}}</span>
+                    </small>
+                </h1>
+            </div>
+            <div class="p-2 flex-fill text-center bd-highlight">
+                <span class="header-item text-white"> Questions {{gameService.currentQuestion + 1}} / {{gameService.questions?.length}}</span>
+            </div>
+            <div class="p-2 flex-fill text-right bd-highlight">
+                <h1 class="display-4 header-item text-white">Points: 
+                    <small></small>
+                </h1>
+            </div>
+        
+    </div>
+</nav>
