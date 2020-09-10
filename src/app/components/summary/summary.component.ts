@@ -30,7 +30,7 @@ export class SummaryComponent implements OnInit {
   ngOnInit() {
 
     // first check that the game is not in status NEW (init)
-    this.store.select(getGameStatus).subscribe(status => {
+    this.store.select(getGameStatus).pipe(take(1)).subscribe(status => {
       if (status === 'NEW') {
         this.router.navigate([''], { replaceUrl: false });
       }
