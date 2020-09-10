@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { QuestionsActionTypes } from '../reducers/questions/questions.reducer.actions';
 import { getCurrentQuestion, getQuestions } from '../reducers/questions/questions.selectors';
 import { Question } from '../models';
-import { AddScore, EndGame, GameStatusActionTypes } from '../reducers/game-status/game-status.reducer.actions';
+import { AddScore, EndGame, GameStatusActionTypes, SetGameStatus } from '../reducers/game-status/game-status.reducer.actions';
 import { SubstractLives } from '../reducers/user/user.reducer.actions';
 import { getGameStatus } from '../reducers/game-status/game-status.selectors';
 
@@ -31,25 +31,25 @@ export class AnswerEffects {
     )
   );
 
-  gameEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(GameStatusActionTypes.SET_STATUS),
-    mergeMap(() => this.store.select(getGameStatus)
-      .pipe(
-        take(1),
-        map(status => {
-            if (status === 'ENDED') {
-                // update stats in DB
-                this.store.select(getQuestions).subscribe(questions => {
-                  console.log(questions);
-                });
-                return new EndGame();
-            }
-            return new EndGame();
-        }),
-        catchError(() => EMPTY)
-      ))
-    )
-  );
+  // gameEffect$ = createEffect(() => this.actions$.pipe(
+  //   ofType(GameStatusActionTypes.SET_STATUS),
+  //   mergeMap(() => this.store.select(getGameStatus)
+  //     .pipe(
+  //       take(1),
+  //       map(status => {
+  //           if (status === 'ENDED') {
+  //               // update stats in DB
+  //               this.store.select(getQuestions).subscribe(questions => {
+  //                 console.log(questions);
+  //               });
+  //               return {}
+  //           }
+  //           return new SetGameStatus(status);
+  //       }),
+  //       catchError(() => EMPTY)
+  //     ))
+  //   )
+  // );
 
   constructor(
     private actions$: Actions,
