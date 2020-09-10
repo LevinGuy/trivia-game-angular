@@ -1,16 +1,16 @@
 <!-- Image and text -->
-<nav class="navbar sticky-top navbar-light bg-light">
-    <div class="container d-flex">
+<nav class="navbar sticky-top navbar-light bg-light" *ngIf="gameStatus$ | async as gameStatus">
+    <div class="container d-flex" *ngIf="gameStatus === 'STARTED'">
         
             <div class="p-2 flex-fill bd-highlight">
                 <h1 class="display-4 header-item text-white">Lives: 
                     <small>
-                        <span *ngFor='let in of lives; let i = index'><img src="/assets/images/heart.png"></span>
+                        <span *ngFor='let in of lives$ | async; let i = index'><img src="/assets/images/heart.png"></span>
                     </small>
                 </h1>
             </div>
             <div class="p-2 flex-fill text-center bd-highlight">
-                <span class="header-item text-white"> Questions {{currentQuestionIndex}} / {{questionsTotal}}</span>
+                <span class="header-item text-white"> Question {{currentQuestionIndex$ | async}} / {{questionsTotal$ | async}}</span>
             </div>
             <div class="p-2 flex-fill text-right bd-highlight">
                 <h1 class="display-4 header-item text-white">Points: 
@@ -19,4 +19,13 @@
             </div>
         
     </div>
+
+    <div class="container d-flex" *ngIf="gameStatus === 'ENDED'">
+                    
+        <div class="p-2 flex-fill text-center bd-highlight">
+            <a class="btn btn-dark btn-lg font-game-bold" routerLink="/start" role="button">START A NEW GAME</a>
+        </div>
+            
+    </div>
+
 </nav>

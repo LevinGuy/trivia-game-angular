@@ -16,9 +16,9 @@ export class AddScore implements Action {
   constructor(public amount: number) { }
 }
 
-export class Clear implements Action {
+export class ClearGameStatus implements Action {
   readonly type = GameStatusActionTypes.CLEAR;
   constructor() { }
 }
 
-export type GameStatusActions = SetGameStatus | Clear | AddScore;
+export type GameStatusActions = SetGameStatus | ClearGameStatus | AddScore;

@@ -15,6 +15,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   public answerStatusText: string;
   public answerSubmitted: boolean;
+  public skipAllowed: boolean;
   public correct: boolean;
   public selectedOptionIndex = null;
 
@@ -28,6 +29,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this._question = question;
     setTimeout(() => {
       this.showLoader = false;
+      this.skipAllowed = true;
       this.correct = null;
     }, 500); // this is for showing the user that question changed and GOOD or WRONG
 
@@ -67,6 +69,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
   }
 
   confirmAnswer() {
+    clearInterval(this._count);
     this.answerSubmitted = true;
     if (this._question.options[this.selectedOptionIndex].isAnswer) {
       this.correct = true;
@@ -79,6 +82,8 @@ export class QuestionComponent implements OnInit, OnDestroy {
   }
 
   skipQuestion() {
+    clearInterval(this._count);
+    this.skipAllowed = false;
     this.nextQuestion.emit();
   }
 

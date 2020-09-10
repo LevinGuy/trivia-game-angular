@@ -32,6 +32,10 @@
     border: 2px solid #555555;
 }
 
+.bg-selected {
+    background-image: url('/assets/images/option-selected.png');
+}
+
 .bg-red {
     background-color: red;
     background-image: url('/assets/images/option-wrong.png');
@@ -71,8 +75,15 @@
 }
 
 .timer-item {
-    min-width: 100px;
+    min-width: 120px;
     font-weight: 600;
     font-size: 22px;
     letter-spacing: 0;
 }
+
+@media only screen and (min-width: 600px) {
+    .btn-confirm {
+        margin-left: 6.5rem;
+    }
+}
+

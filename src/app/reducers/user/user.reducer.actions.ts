@@ -16,9 +16,9 @@ export class SetName implements Action {
   constructor(public name: string) { }
 }
 
-export class Clear implements Action {
+export class ClearUser implements Action {
   readonly type = UserActionTypes.CLEAR;
   constructor() { }
 }
 
-export type UserActions = SubstractLives | Clear | SetName;
+export type UserActions = SubstractLives | ClearUser | SetName;

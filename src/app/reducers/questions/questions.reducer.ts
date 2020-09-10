@@ -28,6 +28,8 @@ export function reducer(state: QuestionsState = initialState, action: QuestionsA
     case QuestionsActionTypes.SET_ANSWER: {
       newState = JSON.parse(JSON.stringify(state));
       newState.questions[state.currentIndex].options.map(opt => (opt.selected = false));
+      console.log(state.currentIndex);
+      console.log(action.optionIndex);
       newState.questions[state.currentIndex].options[action.optionIndex].selected = true;
       return newState;
     }

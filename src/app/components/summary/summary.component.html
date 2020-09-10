@@ -1,1 +1,25 @@
-<p>summary works!</p>
+<div class="container mt-5">
+
+    <div class="jumbotron bg-white text-center">
+        <h1 class="display-3 font-game-bold mb-4">GAME OVER!</h1>
+        <hr class="my-4">
+
+        <h1 *ngIf="totalQuestions === correctQuestions" class="huge font-game-bold mb-4">AMAZING</h1>
+
+        <p class="font-game display-4 text-muted">You answered correctly on:</p>
+        <h2 class="display-3 font-game-bold">{{correctQuestions}} out of {{totalQuestions}} questions</h2>
+        
+        <hr class="my-4">
+        <p>Enter your name:</p>
+        <form class="text-center">
+            <div class="form-inline">
+              <div class="mx-auto w-50">
+                <input type="text" class="form-control font-game-bold form-control-lg mb-2" id="inlineFormInput" placeholder="Jane Doe">
+                <button type="submit" class="btn btn-lg font-game btn-primary ml-2 mb-2">Submit</button>
+              </div>
+            </div>
+          </form>
+    </div>
+  
+  </div>
+  

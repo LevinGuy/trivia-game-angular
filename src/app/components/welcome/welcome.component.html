@@ -1,8 +1,18 @@
-<div class="jumbotron">
-    <h1 class="display-4">Welcome!</h1>
-    <p class="lead">To start playing, please on the start button</p>
+<div class="container mt-5">
+
+  <div class="jumbotron text-center bg-white">
+    <h1 class="display-3 font-game-bold mb-4">WELCOME!</h1>
     <hr class="my-4">
-    <p>You will have 20 questions to answer, with 3 possible mistakes / lives</p>
-    <a class="btn btn-primary btn-lg" routerLink="/start" role="button">Start</a>
+    
+    <p class="lead font-game">To start playing, please click the start game button</p>
+    <a class="btn btn-primary btn-lg font-game-bold" (click)="start()" role="button">Start Game</a>
+
+    <hr class="my-4">
+    <p class="mt-5 font-game-bold">You will have 10 questions to answer<br>With 3 possible mistakes / lives<br></p>
+    <p class="lead mt-3 font-game-bold">GOOD LUCK!</p>
+
+    
   </div>
+
+</div>
 

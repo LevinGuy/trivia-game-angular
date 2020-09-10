@@ -1,8 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { GameService } from 'src/app/services/game.service';
 import { Store } from '@ngrx/store';
 import { getUserLives } from 'src/app/reducers/user/user.selectors';
 import { getCurrentQuestionIndex, getQuestions } from 'src/app/reducers/questions/questions.selectors';
+import { Subscription, Subject, Observable } from 'rxjs';
+import { takeUntil, map } from 'rxjs/operators';
+import { getGameStatus } from 'src/app/reducers/game-status/game-status.selectors';
 
 @Component({
   selector: 'app-header',
@@ -11,16 +14,18 @@ import { getCurrentQuestionIndex, getQuestions } from 'src/app/reducers/question
 })
 export class HeaderComponent implements OnInit {
 
-  lives: any;
-  currentQuestionIndex: any;
-  questionsTotal: any;
+  lives$: Observable<Array<number>>;
+  currentQuestionIndex$: Observable<number>;
+  questionsTotal$: Observable<number>;
+  gameStatus$: Observable<string>;
 
   constructor(public gameService: GameService, private store: Store<any>) { }
 
   ngOnInit() {
-    this.store.select(getUserLives).subscribe(lives => this.lives = new Array(lives));
-    this.store.select(getCurrentQuestionIndex).subscribe(index => this.currentQuestionIndex = (index + 1));
-    this.store.select(getQuestions).subscribe(questions => this.questionsTotal = questions.length);
+    this.lives$ = this.store.select(getUserLives).pipe(map(lives => new Array(lives)));
+    this.currentQuestionIndex$ = this.store.select(getCurrentQuestionIndex).pipe(map(index => (++index)));
+    this.questionsTotal$ = this.store.select(getQuestions).pipe(map(questions => questions.length));
+    this.gameStatus$ = this.store.select(getGameStatus);
   }
 
 }

@@ -16,7 +16,6 @@ export class Question {
     question: string;
 
     options: Option[];
-    answered: boolean;
 
     constructor(data: any) {
         data = data || {};
@@ -37,7 +36,7 @@ export class Question {
         this.options = opts;
     }
 
-    shuffle(array) {
+    private shuffle(array) {
         let currentIndex = array.length;
         let temp;
         let randomIndex;

@@ -29,9 +29,9 @@ export class SetAnswer implements Action {
   constructor(public optionIndex: number) { }
 }
 
-export class Clear implements Action {
+export class ClearQuestions implements Action {
   readonly type = QuestionsActionTypes.CLEAR;
   constructor() { }
 }
 
-export type QuestionsActions = SetQuestions | NextQuestion | SetAnswer | Clear | SetCurrentIndex;
+export type QuestionsActions = SetQuestions | NextQuestion | SetAnswer | ClearQuestions | SetCurrentIndex;

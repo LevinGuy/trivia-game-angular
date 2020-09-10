@@ -17,7 +17,7 @@ export function reducer(state: GameStatusState = initialState, action: GameStatu
       return initialState;
     case GameStatusActionTypes.SET_STATUS:
       newState = Object.assign({}, state);
-      newState.status = Object.assign({}, action.status);
+      newState.status = action.status;
       return newState;
     case GameStatusActionTypes.ADD_SCORE: {
       newState = Object.assign({}, state);
