@@ -3,16 +3,17 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError, take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { QuestionsActionTypes, SetAnswer } from '../reducers/questions/questions.reducer.actions';
-import { getCurrentQuestion } from '../reducers/questions/questions.selectors';
+import { QuestionsActionTypes } from '../reducers/questions/questions.reducer.actions';
+import { getCurrentQuestion, getQuestions } from '../reducers/questions/questions.selectors';
 import { Question } from '../models';
-import { AddScore } from '../reducers/game-status/game-status.reducer.actions';
+import { AddScore, EndGame, GameStatusActionTypes } from '../reducers/game-status/game-status.reducer.actions';
 import { SubstractLives } from '../reducers/user/user.reducer.actions';
+import { getGameStatus } from '../reducers/game-status/game-status.selectors';
 
 @Injectable()
 export class AnswerEffects {
 
-  gameEffect$ = createEffect(() => this.actions$.pipe(
+  setAnswerEffect$ = createEffect(() => this.actions$.pipe(
     ofType(QuestionsActionTypes.SET_ANSWER),
     mergeMap(() => this.store.select(getCurrentQuestion)
       .pipe(
@@ -30,21 +31,25 @@ export class AnswerEffects {
     )
   );
 
-//   questionEffect$ = createEffect(() => this.actions$.pipe(
-//     ofType(QuestionsActionTypes.NEXT_QUESTION),
-//     mergeMap(() => this.store.select(getCurrentQuestion)
-//       .pipe(
-//         map((question: Question) => {
-//             const selectedIndex = question.options.findIndex(x => x.selected === true);
-//             if (selectedIndex < 0) {
-//                 const index = question.options.findIndex(x => x.isAnswer === false);
-//                 return new SetAnswer(index);
-//             }
-//         }),
-//         catchError(() => EMPTY)
-//       ))
-//     )
-//   );
+  gameEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(GameStatusActionTypes.SET_STATUS),
+    mergeMap(() => this.store.select(getGameStatus)
+      .pipe(
+        take(1),
+        map(status => {
+            if (status === 'ENDED') {
+                // update stats in DB
+                this.store.select(getQuestions).subscribe(questions => {
+                  console.log(questions);
+                });
+                return new EndGame();
+            }
+            return new EndGame();
+        }),
+        catchError(() => EMPTY)
+      ))
+    )
+  );
 
   constructor(
     private actions$: Actions,

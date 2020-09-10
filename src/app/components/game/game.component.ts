@@ -33,7 +33,7 @@ export class GameComponent implements OnInit {
       return this.gameService.startNewGame(data);
     }));
 
-    this.store.select(getCurrentQuestionIndex).subscribe(index => this.currentQuestionIndex = (index + 1));
+    this.store.select(getCurrentQuestionIndex).subscribe(index => this.currentQuestionIndex = index);
   }
 
   skipQuestion() {

@@ -1,25 +1,36 @@
-<div class="container mt-5">
+<div class="container mt-3">
 
-    <div class="jumbotron bg-white text-center">
+    <div class="jumbotron bg-white text-center" *ngIf="!showLeaderBoard">
         <h1 class="display-3 font-game-bold mb-4">GAME OVER!</h1>
         <hr class="my-4">
 
         <h1 *ngIf="totalQuestions === correctQuestions" class="huge font-game-bold mb-4">AMAZING</h1>
 
         <p class="font-game display-4 text-muted">You answered correctly on:</p>
-        <h2 class="display-3 font-game-bold">{{correctQuestions}} out of {{totalQuestions}} questions</h2>
-        
+        <h1 class="font-game-bold text-muted">{{correctQuestions}} out of {{totalQuestions}} questions</h1>        
+        <h1 class="giant font-game mb-4">SCORE: <span class="font-game-bold">{{score}}</span></h1>
         <hr class="my-4">
-        <p>Enter your name:</p>
-        <form class="text-center">
+
+        <h2 class="font-game mb-4">Enter your name:</h2>
+        <form [formGroup]="userForm" (submit)="submitForm($event, userForm.value)" class="text-center">
             <div class="form-inline">
               <div class="mx-auto w-50">
-                <input type="text" class="form-control font-game-bold form-control-lg mb-2" id="inlineFormInput" placeholder="Jane Doe">
+                <input type="text" formControlName="name" class="form-control font-game-bold form-control-lg mb-2" placeholder="Jane Doe">
                 <button type="submit" class="btn btn-lg font-game btn-primary ml-2 mb-2">Submit</button>
               </div>
             </div>
           </form>
     </div>
+
+    <div class="jumbotron bg-white text-center" *ngIf="showLeaderBoard">
+      <h1 class="display-3 font-game-bold mb-4">LEADER BOARD</h1>
+      <hr class="my-4">
+
+      <div class="row m-0" *ngFor="let leader of leaderBoard; trackBy: leader; let i = index;">
+        <div class="col-md-4 offset-md-2 text-left lead font-game-bold" [ngClass]="{ 'text-warning' : i < 3 }">{{i+1}}. {{leader.name}}</div>
+        <div class="col-md-6 text-center font-game-bold lead" [ngClass]="{ 'text-warning' : i < 3 }">{{leader.score}}</div>
+      </div>
+  </div>
   
   </div>
   

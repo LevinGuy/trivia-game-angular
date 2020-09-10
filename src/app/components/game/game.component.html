@@ -17,9 +17,9 @@
         <div class="col-md-8 offset-md-2 col-sm-12">
             <nav class="mx-auto" style="width: 250px;" aria-label="...">
                 <ul class="pagination pagination-sm">
-                  <li class="page-item" [ngClass]="{ 'active' : (i+1) === currentQuestionIndex}" *ngFor="let in of totalQuestions; let i = index" aria-current="page">
-                    <span class="page-link" [ngClass]="{ 'bg-success': currentQuestionIndex > (i+1) && totalQuestions[i+1] === -1, 'bg-danger text-white': currentQuestionIndex > (i+1) && totalQuestions[i+1] !== -1 }"
-                        [ngStyle]="{ 'color': (currentQuestionIndex > (i+1) && totalQuestions[i+1] === -1) ? 'white': null }">
+                  <li class="page-item" [ngClass]="{ 'active' : (i) === currentQuestionIndex}" *ngFor="let in of totalQuestions; let i = index" aria-current="page">
+                    <span class="page-link" [ngClass]="{ 'bg-success': currentQuestionIndex > i && totalQuestions[i] === -1, 'bg-danger text-white': currentQuestionIndex > i && totalQuestions[i] !== -1 }"
+                        [ngStyle]="{ 'color': (currentQuestionIndex > i && totalQuestions[i] === -1) ? 'white': null }">
                       {{i+1}} 
                     </span>
                   </li>

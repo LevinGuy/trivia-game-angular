@@ -19,11 +19,10 @@ export function reducer(state: UserState = initialState, action: UserActions) {
       newState = Object.assign({}, state);
       newState.name = Object.assign({}, action.name);
       return newState;
-    case UserActionTypes.SUBSTRACT_LIVES: {
+    case UserActionTypes.SUBSTRACT_LIVES:
       newState = Object.assign({}, state);
       newState.lives--;
       return newState;
-    }
     default:
       return state;
   }

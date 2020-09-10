@@ -20,24 +20,21 @@ export function reducer(state: QuestionsState = initialState, action: QuestionsA
       newState = Object.assign({}, state);
       newState.questions = Object.assign([], action.questions);
       return newState;
-    case QuestionsActionTypes.SET_CURRENT_INDEX: {
+    case QuestionsActionTypes.SET_CURRENT_INDEX:
       newState = Object.assign({}, state);
       newState.currentIndex = action.index;
       return newState;
-    }
-    case QuestionsActionTypes.SET_ANSWER: {
+    case QuestionsActionTypes.SET_ANSWER:
       newState = JSON.parse(JSON.stringify(state));
       newState.questions[state.currentIndex].options.map(opt => (opt.selected = false));
       console.log(state.currentIndex);
       console.log(action.optionIndex);
       newState.questions[state.currentIndex].options[action.optionIndex].selected = true;
       return newState;
-    }
-    case QuestionsActionTypes.NEXT_QUESTION: {
+    case QuestionsActionTypes.NEXT_QUESTION:
       newState = Object.assign({}, state);
       newState.currentIndex++;
       return newState;
-    }
     default:
       return state;
   }

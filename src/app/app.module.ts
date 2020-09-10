@@ -17,6 +17,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { stateReducers } from './reducers';
 import { AnswerEffects } from './effects/answer-effect.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AnswerEffects } from './effects/answer-effect.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(stateReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25 // Retains last 25 states

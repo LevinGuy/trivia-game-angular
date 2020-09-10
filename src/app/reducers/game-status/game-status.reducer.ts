@@ -19,11 +19,13 @@ export function reducer(state: GameStatusState = initialState, action: GameStatu
       newState = Object.assign({}, state);
       newState.status = action.status;
       return newState;
-    case GameStatusActionTypes.ADD_SCORE: {
+    case GameStatusActionTypes.END_GAME:
+      newState = Object.assign({}, state);
+      return newState;
+    case GameStatusActionTypes.ADD_SCORE:
       newState = Object.assign({}, state);
       newState.score += action.amount;
       return newState;
-    }
     default:
       return state;
   }
